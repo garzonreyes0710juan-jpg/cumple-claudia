@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Cuenta regresiva cumpleaños Claudia</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Arial', sans-serif;
+    }
+
+    body {
+      height: 100vh;
+      background-image: url("https://images.unsplash.com/photo-1513151233558-d860c5398176");
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      text-align: center;
+    }
+
+    .overlay {
+      background: rgba(0, 0, 0, 0.6);
+      padding: 40px;
+      border-radius: 15px;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+    }
+
+    #contador {
+      font-size: 2rem;
+      letter-spacing: 2px;
+    }
+
+    .tiempo {
+      margin: 10px 0;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="overlay">
+    <h1>🎂 Cuenta regresiva para el cumpleaños de Claudia 🎂</h1>
+    <div id="contador">
+      <div class="tiempo"><span id="dias"></span> días</div>
+      <div class="tiempo"><span id="horas"></span> horas</div>
+      <div class="tiempo"><span id="minutos"></span> minutos</div>
+      <div class="tiempo"><span id="segundos"></span> segundos</div>
+    </div>
+  </div>
+
+  <script>
+    // Fecha objetivo: 25 de abril de 2026 a las 8:00 PM
+    const fechaObjetivo = new Date("April 25, 2026 20:00:00").getTime();
+
+    const actualizarContador = () => {
+      const ahora = new Date().getTime();
+      const diferencia = fechaObjetivo - ahora;
+
+      if (diferencia <= 0) {
+        document.getElementById("contador").innerHTML = "🎉 ¡Feliz cumpleaños Claudia! 🎉";
+        return;
+      }
+
+      const dias = Math.floor(diferencia / (1000 * 60 * 60 * 24));
+      const horas = Math.floor((diferencia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutos = Math.floor((diferencia % (1000 * 60 * 60)) / (1000 * 60));
+      const segundos = Math.floor((diferencia % (1000 * 60)) / 1000);
+
+      document.getElementById("dias").textContent = dias;
+      document.getElementById("horas").textContent = horas;
+      document.getElementById("minutos").textContent = minutos;
+      document.getElementById("segundos").textContent = segundos;
+    };
+
+    actualizarContador();
+    setInterval(actualizarContador, 1000);
+  </script>
+
+</body>
+</html>
